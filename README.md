@@ -2,7 +2,7 @@
 
 **JuggerML** es una aplicación móvil desarrollada para Android orientada a la comunidad del deporte de contacto **Jugger**. Funciona como una plataforma centralizada para conectar jugadores, organizar eventos y difundir información sobre este deporte.
 
-Este proyecto ha sido adaptado y desarrollado para la asignatura de **Fundamentos de la Inteligencia Artificial**, integrando técnicas de IA tanto en el **proceso de desarrollo** como en las **funcionalidades de la propia aplicación**.
+Este proyecto ha sido adaptado y desarrollado para la asignatura de **Fundamentos de la Inteligencia Artificial Generativa**, integrando técnicas de IA tanto en el **proceso de desarrollo** como en las **funcionalidades de la propia aplicación**.
 
 ---
 
@@ -29,7 +29,7 @@ En este proyecto, la IA juega un doble papel fundamental:
 
 La aplicación ha sido desarrollada utilizando las siguientes herramientas y tecnologías:
 
-* **Lenguaje:** [Kotlin](https://kotlinlang.org/)[cite: 1]
+* **Lenguaje:** [Kotlin](https://kotlinlang.org/)
 * **Interfaz de Usuario (UI):** [Jetpack Compose](https://developer.android.com/jetpack/compose) (Diseño declarativo moderno).
 * **Entorno de Desarrollo:** [Android Studio](https://developer.android.com/studio).
 * **Backend y Servicios IA:** [Firebase](https://firebase.google.com/) e integración con APIs/Modelos de Inteligencia Artificial
