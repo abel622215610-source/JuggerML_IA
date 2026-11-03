@@ -1,4 +1,5 @@
 package ui.screens
+import models.UserData
 
 import android.app.Activity
 import android.content.Intent
@@ -33,7 +34,7 @@ import com.example.juggerml_ia_generativa.R
 @Composable
 fun RegisterScreen(
     onRegisterOut: () -> Unit = {},
-    onRegisterSuccess: () -> Unit = {},
+    onRegisterSuccess: (UserData) -> Unit = {},
     onRegisterFailed: () -> Unit = {}
 ) {
     var userName by rememberSaveable { mutableStateOf("")}
@@ -42,6 +43,7 @@ fun RegisterScreen(
     var userGmail by rememberSaveable { mutableStateOf("") }
     var userPassword by rememberSaveable { mutableStateOf("") }
     var userRePassword by rememberSaveable { mutableStateOf("") }
+    var userData by mutableStateOf(UserData("","","",""))
 
     var showDatePicker by remember { mutableStateOf(false) }
     val datePickerState = rememberDatePickerState()
@@ -149,7 +151,8 @@ fun RegisterScreen(
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Button(onClick = {
-                onRegisterSuccess()
+                userData = UserData(userName, userLastName, userBirthday, userGmail)
+                onRegisterSuccess(userData)
             }) {
                 Text(
                     stringResource(R.string.Boton_RegistrarCuenta),
@@ -171,6 +174,7 @@ fun RegisterScreen(
 
 
         Spacer(Modifier.height(15.dp))
+
 
     }
 }

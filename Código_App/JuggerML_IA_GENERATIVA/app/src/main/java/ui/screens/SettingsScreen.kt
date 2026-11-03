@@ -1,5 +1,6 @@
 package ui.screens
 
+import models.UserData
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,24 +19,24 @@ import androidx.compose.ui.unit.sp
 
 @Preview(showBackground = true)
 @Composable
-fun SettingsScreen(onVolverHome: () -> Unit = {}) {
+fun SettingsScreen(userData: UserData, onVolverHome: () -> Unit = {}) {
 
         Column() {
             Spacer(modifier = Modifier.height(20.dp))
             Row() {
                 Text(text = "Nombre:", fontSize = 18.sp ,modifier = Modifier.weight(1f))
-                Text(text = "", fontSize = 18.sp,modifier = Modifier.weight(1f))
+                Text(text = "${userData.nombre}", fontSize = 18.sp,modifier = Modifier.weight(1f))
                 Text(text = "Apellidos:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "", fontSize = 18.sp,modifier = Modifier.weight(1f))
+                Text(text = "${userData.apellidos}", fontSize = 18.sp,modifier = Modifier.weight(1f))
             }
 
             Spacer(modifier = Modifier.height(20.dp))
 
             Row() {
                 Text(text = "Fecha de nacimiento:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "", fontSize = 18.sp,modifier = Modifier.weight(1f))
+                Text(text = "${userData.fecha_nac}", fontSize = 18.sp,modifier = Modifier.weight(1f))
                 Text(text = "Email:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "", fontSize = 18.sp,modifier = Modifier.weight(1f))
+                Text(text = "${userData.email}", fontSize = 18.sp,modifier = Modifier.weight(1f))
             }
         }
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {

@@ -1,5 +1,6 @@
 package ui.navigation
 
+import models.UserData
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -20,6 +21,7 @@ import ui.screens.SettingsScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
+    var datosUsuario by remember { mutableStateOf(UserData("", "", "", "")) }
     // Inicializamos el controlador de navegación (NavController) para gestionar las pantallas
     var navController = rememberNavController()
 
@@ -76,7 +78,8 @@ fun MainScreen() {
                 // Ruta de Registro de cuenta nueva
                 composable(Screen.Register.route) {
                     //Si nos registramos con éxito, nos desplazamos a la pantalla de Login para iniciar sesión
-                    RegisterScreen(onRegisterSuccess = {
+                    RegisterScreen(onRegisterSuccess = { userData ->
+                        datosUsuario = userData
                         navController.navigate(Screen.Login.route) {
                             popUpTo(Screen.Register.route) {
                                 inclusive = true
@@ -90,9 +93,10 @@ fun MainScreen() {
                             }
                         }
                     }, onRegisterOut = {
-                        navController.navigate(Screen.Login.route){
+                        navController.navigate(Screen.Login.route) {
                             popUpTo(Screen.Register.route) {
-                                inclusive = true}
+                                inclusive = true
+                            }
                         }
                     })
                 }
@@ -107,9 +111,9 @@ fun MainScreen() {
                             }
                         }
 
-                    },onSettings = {
-                        navController.navigate(Screen.Settings.route) {
-                            popUpTo(Screen.Home.route){
+                    }, onSettings = {
+                        navController.navigate("${Screen.Settings.route}/${datosUsuario.nombre}/${datosUsuario.apellidos}/${datosUsuario.fecha_nac}/${datosUsuario.email}") {
+                            popUpTo(Screen.Home.route) {
                                 inclusive = true
                             }
                         }
@@ -117,16 +121,29 @@ fun MainScreen() {
                     })
                 }
 
-                composable(Screen.Settings.route) {
-                    SettingsScreen (onVolverHome = {
-                        navController.navigate(Screen.Home.route) {
-                            popUpTo(Screen.Settings.route){
-                                inclusive = true
+                composable(
+                    route = "${Screen.Settings.route}/{nombre}/{apellidos}/{fecha_nac}/{email}"
+                ) { backStackEntry ->
+                    // 1. Recogemos los valores de la URL
+                    val nombre = backStackEntry.arguments?.getString("nombre") ?: ""
+                    val apellidos = backStackEntry.arguments?.getString("apellidos") ?: ""
+                    val fechaNac = backStackEntry.arguments?.getString("fecha_nac") ?: ""
+                    val email = backStackEntry.arguments?.getString("email") ?: ""
+
+                    // 2. Creamos el objeto UserData
+                    val userRecogido = UserData(nombre, apellidos, fechaNac, email)
+
+                    // 3. Se lo pasamos a SettingsScreen junto con tu onVolverHome
+                    SettingsScreen(
+                        userData = userRecogido, // ¡Aquí le pasas el objeto que pedía!
+                        onVolverHome = {
+                            navController.navigate(Screen.Home.route) {
+                                popUpTo(Screen.Settings.route) { inclusive = true }
                             }
                         }
-                    })
-                }
+                    )
                 }
             }
         }
     }
+}
