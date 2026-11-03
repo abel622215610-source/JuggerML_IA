@@ -68,6 +68,12 @@ fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}) {
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
+                Button(onClick = { onSettings() }) {
+                    Text(
+                        stringResource(R.string.Boton_onSettings),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
 
             }
         }

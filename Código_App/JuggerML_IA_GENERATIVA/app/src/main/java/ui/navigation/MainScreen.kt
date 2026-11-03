@@ -14,6 +14,7 @@ import com.example.juggerml_ia_generativa.ui.theme.JuggerML_IA_GENERATIVATheme
 import ui.screens.HomeScreen
 import ui.screens.LoginScreen
 import ui.screens.RegisterScreen
+import ui.screens.SettingsScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -106,6 +107,23 @@ fun MainScreen() {
                             }
                         }
 
+                    },onSettings = {
+                        navController.navigate(Screen.Settings.route) {
+                            popUpTo(Screen.Home.route){
+                                inclusive = true
+                            }
+                        }
+
+                    })
+                }
+
+                composable(Screen.Settings.route) {
+                    SettingsScreen (onVolverHome = {
+                        navController.navigate(Screen.Home.route) {
+                            popUpTo(Screen.Settings.route){
+                                inclusive = true
+                            }
+                        }
                     })
                 }
                 }
