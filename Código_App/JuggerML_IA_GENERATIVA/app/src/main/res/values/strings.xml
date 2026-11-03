@@ -7,8 +7,12 @@
     <string name="titulo_RegisterScreen">" Singin account"</string>
     <string name="Boton_InicioSesion">Login</string>
     <string name="Boton_CerrarSesion">Logout</string>
+    <string name="CampoNombre">Name</string>
+    <string name="CampoApellido">Last Name</string>
+    <string name="CampoFechaNac">Birthday</string>
     <string name="CampoGmail">Email</string>
     <string name="CampoContraseña">Password</string>
+    <string name="CampoRepetirContraseña">Repeat Password</string>
     <string name="Boton_AbrirAjustes">Settings</string>
     <string name="Boton_VolverHome">Go to home</string>
     <string name="Texto_RegistrarCuenta">Singin account</string>
@@ -18,4 +22,6 @@
     <string name="Mensaje_PartidoJugger">Jugger Match</string>
     <string name="Boton_SalirRegistrarCuenta">Return to login</string>
     <string name="Boton_onSettings">Ajustes</string>
+
+
 </resources>

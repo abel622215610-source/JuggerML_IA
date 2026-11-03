@@ -36,9 +36,43 @@ fun RegisterScreen(
     onRegisterSuccess: () -> Unit = {},
     onRegisterFailed: () -> Unit = {}
 ) {
-    var context = LocalContext.current
+    var userName by rememberSaveable { mutableStateOf("")}
+    var userLastName by rememberSaveable { mutableStateOf("")}
+    var userBirthday by rememberSaveable { mutableStateOf("")}
     var userGmail by rememberSaveable { mutableStateOf("") }
     var userPassword by rememberSaveable { mutableStateOf("") }
+    var userRePassword by rememberSaveable { mutableStateOf("") }
+
+    var showDatePicker by remember { mutableStateOf(false) }
+    val datePickerState = rememberDatePickerState()
+
+    // Si se muestra el diálogo, renderizamos el DatePickerDialog de Material 3
+    if (showDatePicker) {
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        datePickerState.selectedDateMillis?.let { millis ->
+                            // Convertir los milisegundos a un formato de fecha legible (ej: DD/MM/YYYY)
+                            val formatter = java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
+                            userBirthday = formatter.format(java.util.Date(millis))
+                        }
+                        showDatePicker = false
+                    }
+                ) {
+                    Text("Aceptar")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) {
+                    Text("Cancelar")
+                }
+            }
+        ) {
+            DatePicker(state = datePickerState)
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -51,6 +85,40 @@ fun RegisterScreen(
             modifier = Modifier.size(130.dp)
         )
         Spacer(Modifier.height(30.dp))
+        TextField(
+            value = userName,
+            label = {Text(stringResource(R.string.CampoNombre))},
+            singleLine = true,
+            onValueChange = {userName = it.trim()})
+
+        Spacer(Modifier.height(20.dp))
+
+        TextField(
+            value = userLastName,
+            label = {Text(stringResource(R.string.CampoApellido))},
+            singleLine = true,
+            onValueChange = {userLastName = it.trim()})
+
+        Spacer(Modifier.height(20.dp))
+
+        Box {
+            TextField(
+                value = userBirthday,
+                label = { Text(stringResource(R.string.CampoFechaNac)) },
+                singleLine = true,
+                readOnly = true, // Evita que escriban con el teclado directamente
+                onValueChange = {}
+            )
+            // Superficie transparente para capturar el clic en todo el TextField y abrir el calendario
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clickable { showDatePicker = true }
+            )
+        }
+
+        Spacer(Modifier.height(20.dp))
+
         TextField(
             value = userGmail,
             label = { Text(stringResource(R.string.CampoGmail)) },
@@ -66,6 +134,16 @@ fun RegisterScreen(
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             onValueChange = { userPassword = it })
+
+        Spacer(Modifier.height(20.dp))
+
+        TextField(
+            value = userRePassword,
+            label = { Text(stringResource(R.string.CampoRepetirContraseña)) },
+            singleLine = true,
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            onValueChange = { userRePassword = it })
 
         Spacer(Modifier.height(20.dp))
 
