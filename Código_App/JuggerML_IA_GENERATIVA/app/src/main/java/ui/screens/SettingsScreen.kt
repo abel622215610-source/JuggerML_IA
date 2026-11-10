@@ -1,49 +1,65 @@
 package ui.screens
 
-import models.UserData
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.juggerml_ia_generativa.R
+import com.example.juggerml_ia_generativa.ui.theme.JuggerML_IA_GENERATIVATheme
 
 @Preview(showBackground = true)
 @Composable
-fun SettingsScreen(userData: UserData, onVolverHome: () -> Unit = {}) {
-
-        Column() {
-            Spacer(modifier = Modifier.height(20.dp))
-            Row() {
-                Text(text = "Nombre:", fontSize = 18.sp ,modifier = Modifier.weight(1f))
-                Text(text = "${userData.nombre}", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "Apellidos:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "${userData.apellidos}", fontSize = 18.sp,modifier = Modifier.weight(1f))
+fun SettingsScreen(onSettingsOut: () -> Unit = {}) {
+    JuggerML_IA_GENERATIVATheme() {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            Row(modifier = Modifier.padding(bottom = 20.dp)) {
+                Button(onClick = { onSettingsOut() }) {
+                    Text(
+                        stringResource(R.string.Boton_VolverHome),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Row() {
-                Text(text = "Fecha de nacimiento:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "${userData.fecha_nac}", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "Email:", fontSize = 18.sp,modifier = Modifier.weight(1f))
-                Text(text = "${userData.email}", fontSize = 18.sp,modifier = Modifier.weight(1f))
-            }
         }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        Button(modifier = Modifier.padding(bottom = 15.dp), onClick = {
-            onVolverHome()
-        }) {
-            Text(text = "Volver a home")
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Text(
+                "Ajustes generales",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 15.dp)
+            )
+            var idioma by rememberSaveable { mutableStateOf("") }
+            TextField(
+                modifier = Modifier.padding(top = 20.dp),
+                value = idioma,
+                singleLine = true,
+                label = { Text("Idioma") },
+                onValueChange = { nuevoValor ->
+                    idioma = nuevoValor
+                })
+
         }
     }
 }

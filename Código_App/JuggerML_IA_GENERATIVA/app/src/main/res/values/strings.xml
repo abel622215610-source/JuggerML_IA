@@ -21,7 +21,7 @@
     <string name="Boton_IniciarSesionGoogle">Login with Google</string>
     <string name="Mensaje_PartidoJugger">Jugger Match</string>
     <string name="Boton_SalirRegistrarCuenta">Return to login</string>
-    <string name="Boton_onSettings">Ajustes</string>
+    <string name="Boton_onSettings">Settings</string>
 
 
 </resources>

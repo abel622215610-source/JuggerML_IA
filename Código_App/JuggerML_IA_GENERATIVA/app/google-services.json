@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850529754134",
+    "project_id": "juggermlia",
+    "storage_bucket": "juggermlia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850529754134:android:5a6b9993504170f782a937",
+        "android_client_info": {
+          "package_name": "com.example.juggerml_ia_generativa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSSVlIA1TeCuYTeh5LpZdN3WAe6QgVaq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

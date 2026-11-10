@@ -1,9 +1,6 @@
 package ui.screens
 
-import android.app.Activity
 import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +21,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.juggerml_ia_generativa.R
-
+import com.google.firebase.auth.FirebaseAuth
 
 @Preview(showSystemUi = true)
 @Composable
@@ -74,8 +70,22 @@ fun LoginScreen(
         Row(verticalAlignment = Alignment.CenterVertically) {
             // Botón tradicional de inicio de sesión con Correo y Contraseña
             Button(onClick = {
-                    onLoginSuccess()
-
+                if (userGmail.isNotEmpty() && userPassword.isNotEmpty()) {
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(userGmail, userPassword)
+                        .addOnSuccessListener {
+                            onLoginSuccess()
+                            Toast.makeText(context, "Sesión iniciada con éxito", Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(
+                                context,
+                                "Usuario o contraseña incorrectos",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                } else {
+                    Toast.makeText(context, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                }
             }) {
                 Text(
                     stringResource(R.string.Boton_InicioSesion),
