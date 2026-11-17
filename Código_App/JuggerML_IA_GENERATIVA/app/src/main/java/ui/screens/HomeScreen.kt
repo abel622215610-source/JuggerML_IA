@@ -39,7 +39,8 @@ import com.example.juggerml_ia_generativa.R
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}) {
+fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}
+        ,onCreateMatch: () -> Unit = {}) {
     val context = LocalContext.current
     val url = "https://juggerliga.es/reglamento.php"
     val intentweb = Intent(Intent.ACTION_VIEW,  Uri.parse(url))
@@ -60,7 +61,7 @@ fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            item { Button(onClick = { }) {
+            item { Button(onClick = { onCreateMatch() }) {
                 Text(
                     text = ("Boton de pruebas partido"),
                     color = MaterialTheme.colorScheme.onBackground

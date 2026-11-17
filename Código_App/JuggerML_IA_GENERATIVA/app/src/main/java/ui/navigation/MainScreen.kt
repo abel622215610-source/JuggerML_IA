@@ -133,6 +133,16 @@ fun MainScreen() {
                         }
                     })
                 }
+
+                composable(Screen.Home.route) {
+                    HomeScreen (onCreateMatch = {
+                        navController.navigate(Screen.MatchsScreen.route){
+                            popUpTo(Screen.Home.route){
+                                inclusive = true
+                            }
+                        }
+                    })
+                }
             }
         }
     }

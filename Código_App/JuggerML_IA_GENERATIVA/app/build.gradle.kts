@@ -38,6 +38,13 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
+    implementation("androidx.compose.foundation:foundation-layout:1.12.1")
+    implementation("androidx.compose.foundation:foundation:1.12.1")
+    implementation("androidx.compose.ui:ui:1.12.1")
+    implementation("com.google.android.gms:play-services-appindexing:9.8.0")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("com.google.firebase:firebase-firestore-ktx:27.2.0")
+    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
