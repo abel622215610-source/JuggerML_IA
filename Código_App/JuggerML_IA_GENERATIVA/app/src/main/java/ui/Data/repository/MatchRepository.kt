@@ -1,8 +1,10 @@
-package com.example.juggerml.matchs
+package ui.Data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.tasks.await
+import ui.Data.Match
+import ui.Data.Team
 
 /**
  * Requiere: org.jetbrains.kotlinx:kotlinx-coroutines-play-services

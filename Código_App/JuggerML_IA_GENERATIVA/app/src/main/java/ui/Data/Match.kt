@@ -1,4 +1,4 @@
-package com.example.juggerml.matchs // TODO: ajusta al package de tu proyecto
+package ui.Data // TODO: ajusta al package de tu proyecto
 
 
 import com.google.firebase.Timestamp

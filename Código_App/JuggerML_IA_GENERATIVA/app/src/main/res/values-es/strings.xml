@@ -21,4 +21,6 @@
     <string name="Boton_SalirRegistrarCuenta">Volver al login</string>
     <string name="CampoNombre">Nombre</string>
     <string name="CampoApellido">Apellidos</string>
+    <string name="Boton_onSettings">Ajustes</string>
+    <string name="Title_MatchsScreen">Crear partido</string>
 </resources>

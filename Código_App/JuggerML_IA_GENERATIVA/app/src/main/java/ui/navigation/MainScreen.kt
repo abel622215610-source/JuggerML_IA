@@ -10,12 +10,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import ui.screens.MatchsScreen
 import com.example.juggerml_ia_generativa.ui.theme.JuggerML_IA_GENERATIVATheme
 import com.google.firebase.auth.FirebaseAuth
-import ui.screens.HomeScreen
-import ui.screens.LoginScreen
-import ui.screens.RegisterScreen
-import ui.screens.SettingsScreen
+import ui.screens.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,6 +29,7 @@ fun MainScreen() {
     var tituloVentana = if (currentRoute == Screen.Login.route) Screen.Login.title
     else if (currentRoute == Screen.Register.route) Screen.Register.title
     else if (currentRoute == Screen.Home.route) Screen.Home.title
+    else if (currentRoute == Screen.MatchsScreen.route) Screen.MatchsScreen.title // 👈 2. Condición añadida para MatchsScreen
     else Screen.Settings.title
 
     // Comprobación de sesión activa: si el usuario ya está logueado en Firebase,
@@ -119,6 +118,12 @@ fun MainScreen() {
                                 inclusive = true
                             }
                         }
+                    }, onCreateMatch = {
+                        navController.navigate(Screen.MatchsScreen.route){
+                            popUpTo(Screen.Home.route){
+                                inclusive = true
+                            }
+                        }
                     })
                 }
 
@@ -134,14 +139,14 @@ fun MainScreen() {
                     })
                 }
 
-                composable(Screen.Home.route) {
-                    HomeScreen (onCreateMatch = {
-                        navController.navigate(Screen.MatchsScreen.route){
-                            popUpTo(Screen.Home.route){
-                                inclusive = true
+                composable(Screen.MatchsScreen.route) {
+                    MatchsScreen(
+                        onBack = {
+                            navController.navigate(Screen.Home.route) {
+                                popUpTo(Screen.MatchsScreen.route) { inclusive = true }
                             }
                         }
-                    })
+                    )
                 }
             }
         }

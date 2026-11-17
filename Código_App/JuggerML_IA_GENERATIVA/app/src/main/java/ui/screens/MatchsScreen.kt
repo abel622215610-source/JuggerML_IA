@@ -1,4 +1,4 @@
-package com.example.juggerml.matchs
+package ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -19,6 +19,11 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ui.Data.*
+import ui.viewmodel.MatchsViewModel
+import ui.Data.repository.*
+import ui.viewmodel.TeamForm
+import ui.viewmodel.TeamSide
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -142,7 +147,8 @@ private fun TeamCard(
     enabled: Boolean,
     onNameChange: (String) -> Unit,
     onStarterChange: (Int, String) -> Unit,
-    onSubstituteChange: (Int, String) -> Unit
+    onSubstituteChange: (Int, String) -> Unit,
+    onBack: () -> Unit = {}
 ) {
     Card(
         shape = MaterialTheme.shapes.large,

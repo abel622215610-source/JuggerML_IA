@@ -1,4 +1,4 @@
-package com.example.juggerml.matchs
+package ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ui.Data.MatchRules
+import ui.Data.Team
+import ui.Data.repository.MatchRepository
 
 enum class TeamSide { A, B }
 
