@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.juggerml_ia_generativa.ui.screens.HomeScreen
 import ui.screens.MatchsScreen
 import com.example.juggerml_ia_generativa.ui.theme.JuggerML_IA_GENERATIVATheme
 import com.google.firebase.auth.FirebaseAuth
