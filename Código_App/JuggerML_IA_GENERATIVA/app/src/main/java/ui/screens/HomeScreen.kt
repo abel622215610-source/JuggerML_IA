@@ -1,5 +1,7 @@
 package ui.screens
 
+import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -37,6 +39,10 @@ import com.example.juggerml_ia_generativa.R
 @Preview(showBackground = true)
 @Composable
 fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}) {
+    val context = LocalContext.current
+    val url = "https://juggerliga.es/reglamento.php"
+    val intentweb = Intent(Intent.ACTION_VIEW,  Uri.parse(url))
+
     // Usamos una Column principal que ocupe toda la pantalla
     Column(
         modifier = Modifier
@@ -159,6 +165,14 @@ fun HomeScreen(onLogout: () -> Unit = {}, onSettings: () -> Unit = {}) {
             Button(onClick = { onSettings() }) {
                 Text(
                     stringResource(R.string.Boton_AbrirAjustes),
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+            Button(onClick = {
+                context.startActivity(intentweb)
+            }) {
+                Text(
+                    text = "Abrir Reglamento",
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
