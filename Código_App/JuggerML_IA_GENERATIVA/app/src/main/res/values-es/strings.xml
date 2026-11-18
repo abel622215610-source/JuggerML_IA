@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JuggerML</string>
+    <string name="app_name">JuggerML_IA</string>
     <string name="titulo_LoginScreen">Incio de sesion</string>
     <string name="titulo_HomeScreen">Pantalla de bienvenida</string>
     <string name="titulo_SettingsScreen">Ajustes</string>

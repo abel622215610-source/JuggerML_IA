@@ -52,7 +52,7 @@ fun RegisterScreen(
         ) {
             Spacer(Modifier.height(40.dp))
             Image(
-                painterResource(R.drawable.icono_juggerml),
+                painterResource(R.drawable.icono_juggermlia),
                 contentDescription = "icono app",
                 modifier = Modifier.size(130.dp)
             )

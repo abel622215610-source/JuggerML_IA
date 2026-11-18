@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JuggerMLIA</string>
+    <string name="app_name">JuggerML_IA</string>
     <string name="titulo_LoginScreen">Login</string>
     <string name="titulo_HomeScreen">Home</string>
     <string name="titulo_SettingsScreen">Settings</string>
