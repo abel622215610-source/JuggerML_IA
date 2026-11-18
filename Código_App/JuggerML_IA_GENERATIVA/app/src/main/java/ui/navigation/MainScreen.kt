@@ -42,24 +42,10 @@ fun MainScreen() {
     }
 
     JuggerML_IA_GENERATIVATheme() {
-        Scaffold(topBar = {
-            // Barra superior fija que muestra el título de la pantalla actual
-            TopAppBar(
-                title = {
-                    Text(
-                        stringResource(tituloVentana),
-                        color = MaterialTheme.colorScheme.onBackground,
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
-            )
-        }) { innerPadding ->
             // Contenedor de navegación (NavHost) que define las rutas y transiciones entre pantallas
             NavHost(
                 startDestination = startDestination,
-                navController = navController,
-                modifier = Modifier.padding(innerPadding)
+                navController = navController
             ) {
                 // Ruta de Inicio de Sesión (Login)
                 composable(Screen.Login.route) {
@@ -152,4 +138,3 @@ fun MainScreen() {
             }
         }
     }
-}

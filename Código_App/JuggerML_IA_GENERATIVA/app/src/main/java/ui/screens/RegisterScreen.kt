@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,6 +23,7 @@ import com.example.juggerml_ia_generativa.R
 import com.google.firebase.auth.FirebaseAuth
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true)
 @Composable
 fun RegisterScreen(
@@ -33,79 +35,91 @@ fun RegisterScreen(
     var userGmail by rememberSaveable { mutableStateOf("") }
     var userPassword by rememberSaveable { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(Modifier.height(40.dp))
-        Image(
-            painterResource(R.drawable.icono_juggerml),
-            contentDescription = "icono app",
-            modifier = Modifier.size(130.dp)
-        )
-        Spacer(Modifier.height(30.dp))
-        TextField(
-            value = userGmail,
-            label = { Text(stringResource(R.string.CampoGmail)) },
-            singleLine = true,
-            onValueChange = { userGmail = it.trim() })
-
-        Spacer(Modifier.height(20.dp))
-
-        TextField(
-            value = userPassword,
-            label = { Text(stringResource(R.string.CampoContraseña)) },
-            singleLine = true,
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            onValueChange = { userPassword = it })
-
-        Spacer(Modifier.height(20.dp))
-
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Button(onClick = {
-                if (userGmail.isNotEmpty() && userPassword.isNotEmpty()) {
-                    FirebaseAuth.getInstance()
-                        .createUserWithEmailAndPassword(userGmail, userPassword)
-                        .addOnSuccessListener {
-                            onRegisterSuccess()
-                            Toast.makeText(
-                                context,
-                                "¡Cuenta creada con éxito!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            onRegisterSuccess()
-                        }
-                        .addOnFailureListener { exception ->
-                            Toast.makeText(
-                                context,
-                                "Error al registrar: ${exception.localizedMessage}",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            onRegisterFailed()
-                        }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        stringResource(R.string.titulo_RegisterScreen),
+                        fontWeight = FontWeight.Bold
+                    )
                 }
-            }) {
-                Text(
-                    stringResource(R.string.Boton_RegistrarCuenta),
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-            }
-            Button(
-                modifier = Modifier.padding(start = 10.dp),
-                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary),
-                onClick = {
-                    onRegisterOut()
+            )
+        }) { innerPadding ->
+        Column(
+            modifier = Modifier.fillMaxSize().padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(Modifier.height(40.dp))
+            Image(
+                painterResource(R.drawable.icono_juggerml),
+                contentDescription = "icono app",
+                modifier = Modifier.size(130.dp)
+            )
+            Spacer(Modifier.height(30.dp))
+            TextField(
+                value = userGmail,
+                label = { Text(stringResource(R.string.CampoGmail)) },
+                singleLine = true,
+                onValueChange = { userGmail = it.trim() })
+
+            Spacer(Modifier.height(20.dp))
+
+            TextField(
+                value = userPassword,
+                label = { Text(stringResource(R.string.CampoContraseña)) },
+                singleLine = true,
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                onValueChange = { userPassword = it })
+
+            Spacer(Modifier.height(20.dp))
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Button(onClick = {
+                    if (userGmail.isNotEmpty() && userPassword.isNotEmpty()) {
+                        FirebaseAuth.getInstance()
+                            .createUserWithEmailAndPassword(userGmail, userPassword)
+                            .addOnSuccessListener {
+                                onRegisterSuccess()
+                                Toast.makeText(
+                                    context,
+                                    "¡Cuenta creada con éxito!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                onRegisterSuccess()
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(
+                                    context,
+                                    "Error al registrar: ${exception.localizedMessage}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                onRegisterFailed()
+                            }
+                    }
                 }) {
-                Text(
-                    text = stringResource(R.string.Boton_SalirRegistrarCuenta),
-                    color = MaterialTheme.colorScheme.onBackground
-                )
+                    Text(
+                        stringResource(R.string.Boton_RegistrarCuenta),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+                Button(
+                    modifier = Modifier.padding(start = 10.dp),
+                    colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary),
+                    onClick = {
+                        onRegisterOut()
+                    }) {
+                    Text(
+                        text = stringResource(R.string.Boton_SalirRegistrarCuenta),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
             }
+
+
+            Spacer(Modifier.height(15.dp))
+
         }
-
-
-        Spacer(Modifier.height(15.dp))
-
     }
 }

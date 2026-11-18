@@ -23,6 +23,7 @@
     <string name="Boton_SalirRegistrarCuenta">Return to login</string>
     <string name="Boton_onSettings">Settings</string>
     <string name="Title_MatchsScreen">Create a Match</string>
+    <string name="crear_partido">Create a Match</string>
 
 
 </resources>

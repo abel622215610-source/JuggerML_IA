@@ -13,12 +13,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.juggerml_ia_generativa.R
 import ui.Data.*
 import ui.viewmodel.MatchsViewModel
 import ui.Data.repository.*
@@ -52,7 +54,7 @@ fun MatchsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Crear partido", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.crear_partido), fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
